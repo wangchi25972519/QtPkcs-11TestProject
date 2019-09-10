@@ -374,7 +374,7 @@ void MainWindow::on_FullTestButton_clicked()
             goto ERR;
         }
 
-        ui->textEdit->append(QString().sprintf("C_Decrypt sucessfully...\n"));
+        ui->textEdit->append(QString().sprintf("C_Decrypt sucessfully.....\n"));
 
 #if 0
         dwRet = (p11func.g_P11_FuncList->C_FindObjectsFinal)(TmpSession);
