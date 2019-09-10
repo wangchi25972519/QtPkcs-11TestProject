@@ -37,7 +37,7 @@ void MainWindow::on_FullTestButton_clicked()
     QString filepath = ui->textEditPath->toPlainText();
     QString userpin  = ui->pintextEdit->toPlainText();
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     if(!filepath.length())
     {
@@ -529,7 +529,7 @@ void MainWindow::on_filepushButton_clicked()
 
     ui->textEdit->append(QString().sprintf("C_GetSlotList sucessfully...\n"));
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     ui->textEdit->append(QString().sprintf("枚举到的设备个数为:%d", ulSlotCount));
     for(i = 0; i <ulSlotCount ;i++)
@@ -779,7 +779,7 @@ void MainWindow::on_readfilepushButton_clicked()
 
     ui->textEdit->append(QString().sprintf("C_GetSlotList sucessfully...\n"));
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     ui->textEdit->append(QString().sprintf("枚举到的设备个数为:%d", ulSlotCount));
     for(i = 0; i <ulSlotCount ;i++)
@@ -1029,7 +1029,7 @@ void MainWindow::on_objectpushButton_clicked()
 
     ui->textEdit->append(QString().sprintf("C_GetSlotList sucessfully...\n"));
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     ui->textEdit->append(QString().sprintf("枚举到的设备个数为:%d", ulSlotCount));
     for(i = 0; i <ulSlotCount ;i++)
@@ -1532,7 +1532,7 @@ void MainWindow::on_initpushButton_clicked()
 
     ui->textEdit->append(QString().sprintf("C_GetSlotList sucessfully...\n"));
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     ui->textEdit->append(QString().sprintf("枚举到的设备个数为:%d", ulSlotCount));
 
@@ -1655,7 +1655,7 @@ void MainWindow::on_changepin_clicked()
 
     ui->textEdit->append(QString().sprintf("C_GetSlotList sucessfully...\n"));
 
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     ui->textEdit->append(QString().sprintf("枚举到的设备个数为:%d", ulSlotCount));
 
