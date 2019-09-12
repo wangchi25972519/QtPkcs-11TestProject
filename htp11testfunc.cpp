@@ -1,8 +1,10 @@
 #include "htp11testfunc.h"
+#include <QMessageBox>
 
 HTP11Testfunc::HTP11Testfunc()
 {
-
+    g_nP11InitFlag = 0;
+    g_nSkfInitFlag = 0;
 }
 
 int HTP11Testfunc::QtrToChar(QString srcstr, char *desstr)
@@ -24,12 +26,15 @@ int HTP11Testfunc::Load_Pkcs11_Lib(const char *dllName)
 {
     CK_RV(*dll_get_function_list)(CK_FUNCTION_LIST_PTR_PTR);
     char buffer[256] = {0};
+    int rv = 0;
+
 #ifdef Q_OS_WIN32
     p11Module = LoadLibraryA(dllName);
     if (!p11Module)
     {
-        int rv = GetLastError();
+        rv = GetLastError();
         sprintf(buffer, "LoadLibrary %s fail, rv = %d", dllName, rv);
+        QMessageBox::information(NULL,"Warning", buffer, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         return rv;
         //MessageBox(0, buffer, "Error", 0);
         //exit(1);
@@ -61,16 +66,16 @@ int HTP11Testfunc::Load_Pkcs11_Lib(const char *dllName)
 int HTP11Testfunc::load_p11(const char *dllName)
 {
     int rv = 0;
-    if (g_nP11InitFlag == 1)
+
+    if (g_nP11InitFlag)
     {
         return 0;
     }
-    //Load_Pkcs11_Lib("C:\\Windows\\SysWOW64\\HtPkcs1120098.dll");
+    //Load_Pkcs11_Lib("C:\\Windows\\SysWOW64\\HtPkcs1120098.dll")
     rv = Load_Pkcs11_Lib(dllName);
     /*Load_Pkcs11_Lib("HtPkcs11.dll");*/
 
     g_nP11InitFlag = 1;
-
     return rv;
 }
 

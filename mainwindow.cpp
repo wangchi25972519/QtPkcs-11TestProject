@@ -386,12 +386,31 @@ void MainWindow::on_FullTestButton_clicked()
 
         ui->textEdit->append(QString().sprintf("C_FindObjectsFinal sucessfully...\n"));
 #endif
+        dwRet = (p11func.g_P11_FuncList->C_DestroyObject)(TmpSession, PriHandle);
+        if(dwRet)
+        {
+            ui->textEdit->append(QString().sprintf("C_DestroyObject ERR, dwRet = 0x%08x", dwRet));
+            goto ERR;
+        }
+
+        ui->textEdit->append(QString().sprintf("C_DestroyObject sucessfully...\n"));
+
+        dwRet = (p11func.g_P11_FuncList->C_DestroyObject)(TmpSession, PubHandle);
+        if(dwRet)
+        {
+            ui->textEdit->append(QString().sprintf("C_DestroyObject ERR, dwRet = 0x%08x", dwRet));
+            goto ERR;
+        }
+
+        ui->textEdit->append(QString().sprintf("C_DestroyObject sucessfully...\n"));
+
         dwRet = (p11func.g_P11_FuncList->C_CloseSession)(TmpSession);
         if (dwRet)
         {
             ui->textEdit->append(QString().sprintf("C_CloseSession ERR, dwRet = 0x%08x", dwRet));
             goto ERR;
         }
+        TmpSession = NULL;
 
         ui->textEdit->append(QString().sprintf("C_CloseSession sucessfully...\n"));
     }
@@ -676,6 +695,7 @@ void MainWindow::on_filepushButton_clicked()
             ui->textEdit->append(QString().sprintf("C_CloseSession ERR, dwRet = 0x%08x", dwRet));
             goto ERR;
         }
+        TmpSession = NULL;
 
         ui->textEdit->append(QString().sprintf("C_CloseSession sucessfully...\n"));
     }
@@ -908,6 +928,7 @@ void MainWindow::on_readfilepushButton_clicked()
             ui->textEdit->append(QString().sprintf("C_CloseSession ERR, dwRet = 0x%08x", dwRet));
             goto ERR;
         }
+        TmpSession = NULL;
 
         ui->textEdit->append(QString().sprintf("C_CloseSession sucessfully...\n"));
     }
@@ -1410,6 +1431,7 @@ void MainWindow::on_objectpushButton_clicked()
             ui->textEdit->append(QString().sprintf("C_CloseSession ERR, dwRet = 0x%08x\n", dwRet));
             goto ERR;
         }
+        TmpSession = NULL;
 
         ui->textEdit->append(QString().sprintf("C_CloseSession sucessfully...\n"));
     }
@@ -1753,6 +1775,8 @@ void MainWindow::on_changepin_clicked()
             ui->textEdit->append(QString().sprintf("C_CloseSession ERR, dwRet = 0x%08x", dwRet));
             goto ERR;
         }
+
+        TmpSession = NULL;
 
         ui->textEdit->append(QString().sprintf("C_CloseSession sucessfully...\n"));
     }
